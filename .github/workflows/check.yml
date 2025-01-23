@@ -1,0 +1,27 @@
+name: 'Modrinth Modpack Update Checker'
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Every hours
+  workflow_dispatch: # Allow running the workflow manually
+
+jobs:
+  check-updates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Check Modrinth Modpack updates'
+        uses: Gunivers/modrinth-modpack-update-checker@v1.1.0
+        id: check
+        with:
+          modrinth-modpack-slug: 'exceptionallyoptimized'
+
+      - name: 'Print Modrinth Modpack updates'
+        uses: Gunivers/modrinth-modpack-update-printer@v1.0.0
+        with:
+          current-mc-version: ${{ steps.check.outputs.current-mc-version }}
+          is-up-to-date: ${{ steps.check.outputs.is-up-to-date }}
+          tested-mc-version: ${{ steps.check.outputs.tested-mc-version }}
+          supported-mods: ${{ steps.check.outputs.supported-mods }}
+          unsupported-mods: ${{ steps.check.outputs.unsupported-mods }}
+          can-upgrade: ${{ steps.check.outputs.can-upgrade }}
+          person-to-ping: 'your-github-username'

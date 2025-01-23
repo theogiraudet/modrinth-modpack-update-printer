@@ -1,0 +1,32 @@
+name: 'Modrinth Modpack Update Printer'
+description: 'Print a report in an issue about if a modpack can be upgraded to the next Minecraft version'
+inputs:
+  current-mc-version:
+    description: 'The current Minecraft version of the modpack'
+    required: true
+  is-up-to-date:
+    description: 'Whether the modpack is up to date'
+    required: true
+  tested-mc-version:
+    description: 'The Minecraft version that was tested'
+    required: true
+  supported-mods:
+    description: 'The mods that are supported on the tested Minecraft version'
+    required: true
+  unsupported-mods:
+    description: 'The mods that are not supported on the tested Minecraft version'
+    required: true
+  can-upgrade:
+    description: 'Whether the modpack can be upgraded to the next Minecraft version'
+    required: true
+  person-to-ping:
+    description: 'The person to ping in the issue when the modpack can be upgraded'
+    required: true
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    args:
+      - ${{ inputs.current-mc-version }}
+      - ${{ inputs.tested-mc-version }}
+      - ${{ inputs.supported-mods }}
+      - ${{ inputs.unsupported-mods }}
