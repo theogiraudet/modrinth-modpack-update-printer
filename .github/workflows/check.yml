@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check Modrinth Modpack updates'
-        uses: Gunivers/modrinth-modpack-update-checker@v1.1.0
+        uses: Gunivers/modrinth-modpack-update-checker@v1.0.0
         id: check
         with:
           modrinth-modpack-slug: 'exceptionallyoptimized'
@@ -21,7 +21,7 @@ jobs:
           echo ${{ steps.check.outputs.tested-mc-version }}
           echo ${{ steps.check.outputs.supported-mods }}
           echo ${{ steps.check.outputs.unsupported-mods }}
-          echo ${{ steps.check.outputs.can-upgrade }}
+          # echo ${{ steps.check.outputs.can-upgrade }}
 
       - name: 'Print Modrinth Modpack updates'
         uses: theogiraudet/modrinth-modpack-update-printer@main
