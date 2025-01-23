@@ -16,7 +16,7 @@ jobs:
           modrinth-modpack-slug: 'exceptionallyoptimized'
 
       - name: 'Print Modrinth Modpack updates'
-        uses: theogiraudet/modrinth-modpack-update-printer@v1.0.0
+        uses: theogiraudet/modrinth-modpack-update-printer@main
         with:
           current-mc-version: ${{ steps.check.outputs.current-mc-version }}
           is-up-to-date: ${{ steps.check.outputs.is-up-to-date }}
