@@ -2,6 +2,7 @@ import * as core from "@actions/core";
 import * as cache from "@actions/cache";
 import * as github from "@actions/github";
 import fs from "fs";
+import { Toolkit } from "actions-toolkit";
 
 type Cache = {
     issueNumber: number;
@@ -9,9 +10,11 @@ type Cache = {
     message: string;
 }
 
-main();
+Toolkit.run(main, {
+    secrets: ["GITHUB_TOKEN"],
+  });
 
-async function main() {
+async function main(tools: Toolkit) {
     const isUpToDate: boolean = core.getInput("is-up-to-date") === "true";
 
     if(!isUpToDate) {
@@ -49,7 +52,7 @@ async function main() {
         const hit = await cache.restoreCache(paths, cacheKey);
 
         if (!hit) {
-            const result = await octokit.rest.issues.create({
+            const result = await tools.github.issues.create({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
                 title: "Update to Minecraft " + testedMcVersion,
@@ -73,7 +76,7 @@ async function main() {
 
         if(!cacheData.canUpgrade) {
             if(cacheData.message !== message) {
-                await octokit.rest.issues.update({
+                await tools.github.issues.update({
                     owner: github.context.repo.owner,
                     repo: github.context.repo.repo,
                     issue_number: cacheData.issueNumber,
@@ -82,7 +85,7 @@ async function main() {
             }
 
             if(canUpgrade) {
-                await octokit.rest.issues.createComment({
+                await tools.github.issues.createComment({
                     owner: github.context.repo.owner,
                     repo: github.context.repo.repo,
                     issue_number: cacheData.issueNumber,

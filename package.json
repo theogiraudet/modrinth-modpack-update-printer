@@ -10,7 +10,8 @@
   "dependencies": {
     "@actions/cache": "^4.0.0",
     "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.0"
+    "@actions/github": "^6.0.0",
+    "actions-toolkit": "^6.0.1"
   },
   "devDependencies": {
     "@types/node": "^22.10.7",
