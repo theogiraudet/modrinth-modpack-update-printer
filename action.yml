@@ -23,10 +23,5 @@ inputs:
     description: 'The person to ping in the issue when the modpack can be upgraded'
     required: true
 runs:
-    using: 'docker'
-    image: 'Dockerfile'
-    args:
-      - ${{ inputs.current-mc-version }}
-      - ${{ inputs.tested-mc-version }}
-      - ${{ inputs.supported-mods }}
-      - ${{ inputs.unsupported-mods }}
+    using: 'node20'
+    main: 'dist/main.js'
