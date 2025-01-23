@@ -17,20 +17,20 @@ jobs:
       - name: 'Echo all'
         run: |
           echo ${{ steps.check.outputs.is-up-to-date }}
-          echo ${{ steps.check.outputs.current-mc-version }}
-          echo ${{ steps.check.outputs.tested-mc-version }}
-          echo ${{ steps.check.outputs.supported-mods }}
-          echo ${{ steps.check.outputs.unsupported-mods }}
-          # echo ${{ steps.check.outputs.can-upgrade }}
+          echo ${{ steps.check.outputs.current-version }}
+          echo ${{ steps.check.outputs.tested-version }}
+          echo ${{ steps.check.outputs.supported }}
+          echo ${{ steps.check.outputs.unsupported }}
+          echo ${{ steps.check.outputs.can-upgrade }}
 
       - name: 'Print Modrinth Modpack updates'
         uses: theogiraudet/modrinth-modpack-update-printer@main
         if: ${{ steps.check.outputs.is-up-to-date == 'false' }}
         with:
-          current-mc-version: ${{ steps.check.outputs.current-mc-version }}
+          current-mc-version: ${{ steps.check.outputs.current-version }}
           is-up-to-date: ${{ steps.check.outputs.is-up-to-date }}
-          tested-mc-version: ${{ steps.check.outputs.tested-mc-version }}
-          supported-mods: ${{ steps.check.outputs.supported-mods }}
-          unsupported-mods: ${{ steps.check.outputs.unsupported-mods }}
+          tested-mc-version: ${{ steps.check.outputs.tested-version }}
+          supported-mods: ${{ steps.check.outputs.supported }}
+          unsupported-mods: ${{ steps.check.outputs.unsupported }}
           can-upgrade: ${{ steps.check.outputs.can-upgrade }}
           person-to-ping: 'theogiraudet'
