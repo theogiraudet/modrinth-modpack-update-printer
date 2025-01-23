@@ -17,6 +17,7 @@ jobs:
 
       - name: 'Print Modrinth Modpack updates'
         uses: theogiraudet/modrinth-modpack-update-printer@main
+        if: ${{ steps.check.outputs.can-upgrade == 'true' }}
         with:
           current-mc-version: ${{ steps.check.outputs.current-mc-version }}
           is-up-to-date: ${{ steps.check.outputs.is-up-to-date }}
