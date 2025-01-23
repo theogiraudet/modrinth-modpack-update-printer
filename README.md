@@ -55,4 +55,3 @@ jobs:
 | `unsupported-mods` | The mods that are not supported on the tested Minecraft version | Yes | v1.0.0 |
 | `can-upgrade` | Whether the modpack can be upgraded to the next Minecraft version | Yes | v1.0.0 |
 | `person-to-ping` | The person to ping in the issue when the modpack can be upgraded | Yes | v1.0.0 |
-| `token` | The GitHub token to use to create the issue and comment | Yes | v1.0.0 |

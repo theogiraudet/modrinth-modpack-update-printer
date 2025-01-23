@@ -79900,13 +79900,13 @@ async function main(tools) {
     const unsupportedMods = (core.getInput("unsupported-mods") || "").split(",");
     const canUpgrade = core.getInput("can-upgrade") === "true";
     const personToPing = core.getInput("person-to-ping");
-    let message = `Current Minecraft Version: ${currentMcVersion}
-Tested Minecraft Version: ${testedMcVersion}
+    let message = `Current Minecraft version: ${currentMcVersion}
+Tested Minecraft version: ${testedMcVersion}
 
 Mods:
 `;
-    const supportedModsList = supportedMods.map((mod) => ["- [x] ", mod]);
-    const unsupportedModsList = unsupportedMods.map((mod) => ["- [ ] ", mod]);
+    const supportedModsList = supportedMods.map((mod) => ["- \u2611 ", mod]);
+    const unsupportedModsList = unsupportedMods.map((mod) => ["\u2610 ", mod]);
     const modsList = [...supportedModsList, ...unsupportedModsList].sort((a, b) => a[1].localeCompare(b[1])).map((mod) => mod.join(" ")).join("\n");
     message += modsList;
     const cacheKey = "update-to-" + testedMcVersion;
