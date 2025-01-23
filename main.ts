@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import * as cache from "@actions/cache";
-import * as github from "@actions/github";
 import fs from "fs";
 import { Toolkit } from "actions-toolkit";
 
@@ -26,7 +25,6 @@ async function main(tools: Toolkit) {
         const supportedMods: string[] = (core.getInput("supported-mods") || "").split(",");
         const unsupportedMods: string[] = (core.getInput("unsupported-mods") || "").split(",");
         const canUpgrade: boolean = core.getInput("can-upgrade") === "true";
-        const token: string = core.getInput("token");
         const personToPing: string = core.getInput("person-to-ping");
 
         let message = `
@@ -43,8 +41,6 @@ async function main(tools: Toolkit) {
 
         message += modsList
 
-        const octokit = github.getOctokit(token);
-
         const cacheKey = "update-to-" + testedMcVersion;
         const cacheFile = "./.cache/update-to-" + testedMcVersion + ".json";
         const paths = ["./.cache/*.json"];
@@ -53,8 +49,8 @@ async function main(tools: Toolkit) {
 
         if (!hit) {
             const result = await tools.github.issues.create({
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
+                owner: tools.context.repo.owner,
+                repo: tools.context.repo.repo,
                 title: "Update to Minecraft " + testedMcVersion,
                 body: message,
             });
@@ -77,8 +73,8 @@ async function main(tools: Toolkit) {
         if(!cacheData.canUpgrade) {
             if(cacheData.message !== message) {
                 await tools.github.issues.update({
-                    owner: github.context.repo.owner,
-                    repo: github.context.repo.repo,
+                    owner: tools.context.repo.owner,
+                    repo: tools.context.repo.repo,
                     issue_number: cacheData.issueNumber,
                     body: message,
                 });
@@ -86,8 +82,8 @@ async function main(tools: Toolkit) {
 
             if(canUpgrade) {
                 await tools.github.issues.createComment({
-                    owner: github.context.repo.owner,
-                    repo: github.context.repo.repo,
+                    owner: tools.context.repo.owner,
+                    repo: tools.context.repo.repo,
                     issue_number: cacheData.issueNumber,
                     body: `@${personToPing} The modpack can be upgraded to Minecraft ${testedMcVersion}!`,
                 });

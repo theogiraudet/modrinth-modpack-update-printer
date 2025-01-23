@@ -7,6 +7,8 @@ When the modpack can be upgraded, the action will also ping the person specified
 
 ## Usage
 
+First, you have to authorize actions to write in your repository. You can do this by going to the repository settings, Actions/General and clicking on "Read and write permissions" in "Workflow permissions" section.
+
 ```yaml
 name: 'Modrinth Modpack Update Checker'
 
@@ -35,7 +37,8 @@ jobs:
                 unsupported-mods: ${{ steps.check.outputs.unsupported }}
                 can-upgrade: ${{ steps.check.outputs.can-upgrade }}
                 person-to-ping: 'your-github-username'
-                token: ${{ secrets.GITHUB_TOKEN }}
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Inputs
