@@ -52,8 +52,8 @@ async function main() {
 
         if (!hit) {
             const result = await octokit.rest.issues.create({
-                owner: "TheoGaming",
-                repo: "Modrinth Modpack Update Checker",
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
                 title: "Update to Minecraft " + testedMcVersion,
                 body: message,
             });

@@ -28,13 +28,14 @@ jobs:
         - name: 'Print Modrinth Modpack updates'
             uses: Gunivers/modrinth-modpack-update-printer@v1.0.0
             with:
-                current-mc-version: ${{ steps.check.outputs.current-mc-version }}
+                current-mc-version: ${{ steps.check.outputs.current-version }}
                 is-up-to-date: ${{ steps.check.outputs.is-up-to-date }}
-                tested-mc-version: ${{ steps.check.outputs.tested-mc-version }}
-                supported-mods: ${{ steps.check.outputs.supported-mods }}
-                unsupported-mods: ${{ steps.check.outputs.unsupported-mods }}
+                tested-mc-version: ${{ steps.check.outputs.searched-version }}
+                supported-mods: ${{ steps.check.outputs.supported }}
+                unsupported-mods: ${{ steps.check.outputs.unsupported }}
                 can-upgrade: ${{ steps.check.outputs.can-upgrade }}
                 person-to-ping: 'your-github-username'
+                token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Inputs
@@ -48,3 +49,4 @@ jobs:
 | `unsupported-mods` | The mods that are not supported on the tested Minecraft version | Yes | v1.0.0 |
 | `can-upgrade` | Whether the modpack can be upgraded to the next Minecraft version | Yes | v1.0.0 |
 | `person-to-ping` | The person to ping in the issue when the modpack can be upgraded | Yes | v1.0.0 |
+| `token` | The GitHub token to use to create the issue and comment | Yes | v1.0.0 |

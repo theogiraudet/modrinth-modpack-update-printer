@@ -25,3 +25,4 @@ jobs:
           unsupported-mods: ${{ steps.check.outputs.unsupported }}
           can-upgrade: ${{ steps.check.outputs.can-upgrade }}
           person-to-ping: 'theogiraudet'
+          token: ${{ secrets.GITHUB_TOKEN }}
