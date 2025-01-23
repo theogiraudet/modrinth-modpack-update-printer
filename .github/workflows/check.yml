@@ -14,6 +14,14 @@ jobs:
         id: check
         with:
           modrinth-modpack-slug: 'exceptionallyoptimized'
+      - name: 'Echo all'
+        run: |
+          echo ${{ steps.check.outputs.is-up-to-date }}
+          echo ${{ steps.check.outputs.current-mc-version }}
+          echo ${{ steps.check.outputs.tested-mc-version }}
+          echo ${{ steps.check.outputs.supported-mods }}
+          echo ${{ steps.check.outputs.unsupported-mods }}
+          echo ${{ steps.check.outputs.can-upgrade }}
 
       - name: 'Print Modrinth Modpack updates'
         uses: theogiraudet/modrinth-modpack-update-printer@main
