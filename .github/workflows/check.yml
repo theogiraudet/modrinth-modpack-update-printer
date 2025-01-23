@@ -24,4 +24,4 @@ jobs:
           supported-mods: ${{ steps.check.outputs.supported-mods }}
           unsupported-mods: ${{ steps.check.outputs.unsupported-mods }}
           can-upgrade: ${{ steps.check.outputs.can-upgrade }}
-          person-to-ping: 'your-github-username'
+          person-to-ping: 'theogiraudet'
