@@ -27,15 +27,10 @@ async function main(tools: Toolkit) {
         const canUpgrade: boolean = core.getInput("can-upgrade") === "true";
         const personToPing: string = core.getInput("person-to-ping");
 
-        let message = `
-        Current Minecraft Version: ${currentMcVersion}
-        Tested Minecraft Version: ${testedMcVersion}
+        let message = `Current Minecraft Version: ${currentMcVersion}\nTested Minecraft Version: ${testedMcVersion}\n\nMods:\n`;
 
-        Mods:
-        `;
-
-        const supportedModsList = supportedMods.map<[string, string]>((mod) => ["[x]", mod]);
-        const unsupportedModsList = unsupportedMods.map<[string, string]>((mod) => ["[ ]", mod]);
+        const supportedModsList = supportedMods.map<[string, string]>((mod) => ["- [x] ", mod]);
+        const unsupportedModsList = unsupportedMods.map<[string, string]>((mod) => ["- [ ] ", mod]);
 
         const modsList = [...supportedModsList, ...unsupportedModsList].sort((a, b) => a[1].localeCompare(b[1])).map((mod) => mod.join(" ")).join("\n");
 

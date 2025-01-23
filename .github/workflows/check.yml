@@ -6,7 +6,6 @@ on:
   workflow_dispatch: # Allow running the workflow manually
 
 permissions:
-  contents: read
   issues: write 
 
 jobs:

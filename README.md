@@ -17,6 +17,9 @@ on:
     - cron: '0 * * * *' # Every hours
   workflow_dispatch: # Allow running the workflow manually
 
+permissions:
+  issues: write 
+
 jobs:
   check-updates:
     runs-on: ubuntu-latest
@@ -37,8 +40,8 @@ jobs:
                 unsupported-mods: ${{ steps.check.outputs.unsupported }}
                 can-upgrade: ${{ steps.check.outputs.can-upgrade }}
                 person-to-ping: 'your-github-username'
-            env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
 ```
 
 ## Inputs
