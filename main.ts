@@ -1,7 +1,6 @@
 import * as core from "@actions/core";
 import * as cache from "@actions/cache";
 import * as github from "@actions/github";
-import { Octokit } from "octokit";
 import fs from "fs";
 
 type Cache = {
@@ -41,8 +40,7 @@ async function main() {
 
         message += modsList
 
-        const octokit = new Octokit({ auth: token });
-        await octokit.rest.users.getAuthenticated();
+        const octokit = github.getOctokit(token);
 
         const cacheKey = "update-to-" + testedMcVersion;
         const cacheFile = "./.cache/update-to-" + testedMcVersion + ".json";
