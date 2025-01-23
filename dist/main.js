@@ -83537,8 +83537,9 @@ var OAuthApp2 = OAuthApp.defaults({ Octokit: Octokit4 });
 var import_fs = __toESM(require("fs"));
 main();
 async function main() {
-  const isUpToDate = core.getInput("is-up-to-date") === "true" || true;
+  const isUpToDate = core.getInput("is-up-to-date") === "true";
   if (!isUpToDate) {
+    console.log("The modpack is not up to date, creating an issue\u2026");
     const currentMcVersion = core.getInput("current-mc-version");
     const testedMcVersion = core.getInput("tested-mc-version");
     const supportedMods = (core.getInput("supported-mods") || "").split(",");
