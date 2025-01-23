@@ -22,6 +22,9 @@ inputs:
   person-to-ping:
     description: 'The person to ping in the issue when the modpack can be upgraded'
     required: true
+  token:
+    description: 'The GitHub token to use to create the issue and comment'
+    required: true
 runs:
     using: 'node20'
     main: 'dist/main.js'
