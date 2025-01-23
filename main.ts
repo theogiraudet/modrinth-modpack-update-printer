@@ -13,7 +13,7 @@ type Cache = {
 main();
 
 async function main() {
-    const isUpToDate: boolean = core.getInput("is-up-to-date") === "true" || true;
+    const isUpToDate: boolean = core.getInput("is-up-to-date") === "true";
 
     if(!isUpToDate) {
 
