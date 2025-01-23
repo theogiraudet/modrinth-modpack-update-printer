@@ -17,6 +17,8 @@ async function main() {
 
     if(!isUpToDate) {
 
+        console.log("The modpack is not up to date, creating an issue…");
+        
         const currentMcVersion: string = core.getInput("current-mc-version");
         const testedMcVersion: string = core.getInput("tested-mc-version");
         const supportedMods: string[] = (core.getInput("supported-mods") || "").split(",");
