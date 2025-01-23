@@ -20,7 +20,7 @@ jobs:
         with:
           current-mc-version: ${{ steps.check.outputs.current-version }}
           is-up-to-date: ${{ steps.check.outputs.is-up-to-date }}
-          tested-mc-version: ${{ steps.check.outputs.tested-version }}
+          tested-mc-version: ${{ steps.check.outputs.searched-version }}
           supported-mods: ${{ steps.check.outputs.supported }}
           unsupported-mods: ${{ steps.check.outputs.unsupported }}
           can-upgrade: ${{ steps.check.outputs.can-upgrade }}
